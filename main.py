@@ -19,7 +19,7 @@ def Soma(vetor,letrinha):
             else:#caso o valor do char já tenha sido registrado
                 achou=True  #informa que o esse char foi encontrado 
                 soma=vetor[i].valor #adiciona seu valor na soma
-    if (achou==False and letrinha!= '\n'):#caso a letra não estaja registrada, será adicionada a soma
+    if (achou==False and letrinha!= '\n'):#caso a letra não esteja registrada, será adicionada a soma
         soma=1
     return soma
 #Função para analizar o caso
