@@ -24,35 +24,36 @@ def Soma(vetor,letrinha):
     return soma
 #Função para analizar o caso
 def Caso(caso):
-    
-    #Guarda as letras e as palavras em um vetor
-    with open(caso,'r')as arquivo:#abre o respectivo arquivo
-        vetor = []#vetor que será o vetor para a classe linhas
-        for line in arquivo:#para cada linha do arquivo
-            if (line[2]) != '\n':#quando a linha tiver a palavra de substituição
-                vetor.append((Linhas(line[0],line[2:], True,0)))#registra a linha no vetor
-                
-    #Demarca qual é o inicial
-    for i in range(len(vetor)):#vetor das palavras
-        for x in range(len(vetor)):#vetor das letras
-            for j in range(len(vetor[i].palavra)):#vetor dos chars da palavra
-                if vetor[x].letra==(vetor[i].palavra[j]):#caso essa letra for encontrada
-                    vetor[x].primeiro=False#é registrada como não sendo a primária
+    try:
+        #Guarda as letras e as palavras em um vetor
+        with open(caso,'r')as arquivo:#abre o respectivo arquivo
+            vetor = []#vetor que será o vetor para a classe linhas
+            for line in arquivo:#para cada linha do arquivo
+                if (line[2]) != '\n':#quando a linha tiver a palavra de substituição
+                    vetor.append((Linhas(line[0],line[2:], True,0)))#registra a linha no vetor
                     
-    #Encontra o primeiro char da linha inicial
-    soma = 0#valor da soma dos chars finais
-    happen = False #Para casos que não tenham palavras iniciais (todas as frases se chamam)
-    for i in range(len(vetor)):#passa por todas as letras
-        if vetor[i].primeiro==True:#encontra a respectiva primeira linha que tem que ser lida
-            for j in range(len(vetor[i].palavra)):#passa por todos os chars da palavra
-                soma+=Soma(vetor,vetor[i].palavra[j])#salvando o valor de cada char na soma total
-                happen = True
-                
-    if happen == False: #Não tem palavra inicial (todas as frases se chamam)
-        for j in range(len(vetor[0].palavra)):#passa por todos os chars da palavra primeira palavras
-                soma+=Soma(vetor,vetor[0].palavra[j])#salvando o valor de cada char na soma total
-                
-    print(" ",caso," tem o valor de:",soma)#resposta final
+        #Demarca qual é o inicial
+        for i in range(len(vetor)):#vetor das palavras
+            for x in range(len(vetor)):#vetor das letras
+                for j in range(len(vetor[i].palavra)):#vetor dos chars da palavra
+                    if vetor[x].letra==(vetor[i].palavra[j]):#caso essa letra for encontrada
+                        vetor[x].primeiro=False#é registrada como não sendo a primária
+                        
+        #Encontra o primeiro char da linha inicial
+        soma = 0#valor da soma dos chars finais
+        happen = False #Para casos que não tenham palavras iniciais (todas as frases se chamam)
+        for i in range(len(vetor)):#passa por todas as letras
+            if vetor[i].primeiro==True:#encontra a respectiva primeira linha que tem que ser lida
+                for j in range(len(vetor[i].palavra)):#passa por todos os chars da palavra
+                    soma+=Soma(vetor,vetor[i].palavra[j])#salvando o valor de cada char na soma total
+                    happen = True
+                    
+        if happen == False: #Não tem palavra inicial (todas as frases se chamam)
+            print('  Arquivo',caso,'sem uma palavra inicial, possivel erro no arquivo.') # Arquivos sem a primeira palavra podem por gerar erros ou resultados finais falhos
+        else:
+            print(" ",caso," tem o valor de:",soma)#resposta final
+    except:#Caso ocorra algum erro na leitura do arquivo
+        print('  Erro na leitura do arquivo:',caso,".")
 #main
 caso ='';
 for i in range(10):
