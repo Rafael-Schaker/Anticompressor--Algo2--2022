@@ -51,8 +51,8 @@ def Caso(caso):
         if happen == False: #Não tem palavra inicial (todas as frases se chamam)
             print('  Arquivo',caso,'sem uma palavra inicial, possivel erro no arquivo.') # Arquivos sem a primeira palavra podem por gerar erros ou resultados finais falhos
         else:
-            print(" ",caso," tem o valor de:",soma)#resposta final
-    except:#Caso ocorra algum erro na leitura do arquivo
+            print(" ",caso," tem o valor de:",soma) #resposta final
+    except: #Caso ocorra algum erro na leitura do arquivo
         print('  Erro na leitura do arquivo:',caso,".")
 #main
 caso ='';
